@@ -21,17 +21,17 @@
     "url": "https://github.com/phamtuyenhd202/nodejs_blog/issues"
   },
   "homepage": "https://github.com/phamtuyenhd202/nodejs_blog#readme",
+  "lint-staged": {
+    "src/*/*.{js, json, scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
-  "lint-staged": {
-    "src/*/*.{js, json, scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
-  },
-
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^7.1.1"
   },
   "devDependencies": {
     "express-handlebars": "^7.0.7",

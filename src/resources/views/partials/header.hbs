@@ -1,22 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+
+
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="container">
+      <a class="navbar-brand" href="/">F8 Education</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/courses/create">Tạo khóa học</a>
+
+    <div class="collapse navbar-collapse" style="flex-grow: 0;" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="https://graph.facebook.com/500467251071661/picture?width=400&height=400" class="user-avata" alt="avata">
+              Tuyền Phạm
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/courses/create">Tạo khóa học</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/me/stored/courses/">Khóa học của tôi</a>
+              <a class="dropdown-item" href="/me/stored/news/">Bài viết của tôi</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Đăng xuất</a>
+          </div>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>

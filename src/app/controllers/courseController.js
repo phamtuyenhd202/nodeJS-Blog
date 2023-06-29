@@ -47,13 +47,61 @@ class courseController{
         
     }
 
-    //[DELETE] /course/:id
+    //[DELETE] /courses/:id
     delete(req, res, next) {
-     Courses.deleteOne({_id: req.params.id})
-     .then(()=>res.redirect('back'))
-     .catch(next)
+        Courses.delete({_id: req.params.id})
+        .then(()=>res.redirect('back'))
+        .catch(next)
         
     }
+
+    //[DELETE] /courses/:id/force
+    forceDelete(req, res,next) {
+        Courses.deleteOne({_id: req.params.id})
+        .then(()=>res.redirect('back'))
+        .catch(next)
+    }
+    //[PATCH] /courses/:id/restore
+    restore(req, res, next) {
+        Courses.restore({_id: req.params.id})
+        .then(()=>res.redirect('/me/trash/courses'))
+        .catch(next)
+        
+    }
+    //[POST] /courses/handle-form-action
+    handleFormAction(req, res, next){
+        switch(req.body.action){
+            case 'delete':
+                Courses.delete({_id: {$in: req.body.courseIds}})
+                .then(()=>res.redirect('back'))
+                .catch(next)
+                break;
+
+            default:
+                res.json({message: 'Action is invalid!'})
+
+        }
+        
+    }
+    //[POST] /courses/handle-trash-form-action
+    handleTrashFormAction(req, res, next){
+        switch(req.body.action){
+            case 'restore':
+                    Courses.restore({_id: {$in: req.body.courseIds}})
+                    .then(()=>res.redirect('back'))
+                    .catch(next)
+                break;
+            case 'delete':
+                    Courses.deleteMany({_id: {$in: req.body.courseIds}})
+                    .then(()=>res.redirect('back'))
+                    .catch(next)
+                break;
+
+            default:
+                res.json({message: 'Action is invalid!'})
+        }
+    }
+
 }
 
 

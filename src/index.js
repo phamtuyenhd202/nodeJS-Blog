@@ -8,6 +8,7 @@ const methodOverride = require('method-override')
 
 const route = require('./routes')
 const db = require('./config/db')
+const sortMiddleware = require('./app/middlewares/sortMiddleware')
 
 const app = express()
 const port = 8080
@@ -25,14 +26,15 @@ app.use(methodOverride('_method'))
 //HTTP logger
 app.use(morgan('combined'))
 
+//sustom middlewares
+app.use(sortMiddleware)
 
 //tempalate engine
 
 app.engine('hbs', handlebars({
    extname: '.hbs',
-   helpers: {
-      sum: (a,b) => a + b
-  }
+   helpers: require('./helpers/handlebars'),      
+
  }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources','views'));

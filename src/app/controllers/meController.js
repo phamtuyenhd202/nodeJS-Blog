@@ -6,20 +6,24 @@ class meController{
 
 //[GET] /me/stored/courses
     storedCourses(req, res, next) {
-        // Promise.all([Courses.find({}), Courses.countDocumentsDeleted()])
-        //     .then((result) =>
-        //         res.render('me/stored_courses',{
-        //             deleteCourses: result[0],
-        //             courses: mutipleMongooseToObject(result[1])
-        //         })
-        //     )
-        //     .cath(next)
 
-        Courses.find({})
+        let courseQuery = Courses.find({})      
+        
+        // if(req.query.hasOwnProperty('_sort')){
+        //     const isvalidType = ['asc', 'desc'].includes(req.query.type)
+        //     courseQuery =  courseQuery.sort({
+        //         [req.query.column] : isvalidType ? req.query.type : 'desc',
+                
+        //     })
+        //  }
+
+
+        courseQuery.sortable(req)
         .then((courses)=>res.render('me/stored_courses',{
             courses: mutipleMongooseToObject(courses)
         })
         )
+        .catch(next)
 
     }   
 
@@ -27,13 +31,16 @@ class meController{
 
 //[GET] /me/trash/courses
     trashCourses(req, res, next) {
-        Courses.findDeleted({deleted: true})
-        .then(courses => res.render('me/trash_courses',{
-            courses: mutipleMongooseToObject(courses.filter(course => course.deleted))
-        }))
+        
+        let courseQuery = Courses.find({})      
+        courseQuery.sortable(req)
+        .then((courses)=>res.render('me/stored_courses',{
+            courses: mutipleMongooseToObject(courses)
+        })
+        )
         .catch(next)
-    }
 
+    } 
     
 }
 

@@ -29,10 +29,16 @@
                 <th scope="col">STT</th>
                 <th scope="col">
                   Tên khóa học
-                  <a href="?_sort&column=name&type=desc"><i class="fa-solid fa-sort ml-2"></i></a>
+                  {{{sortable 'name' _sort}}}
                 </th>
-                <th scope="col">Trình độ</th>
-                <th scope="col">Thời gian tạo</th>
+                <th scope="col">
+                  Trình độ
+                  {{{sortable 'leve' _sort}}}
+                </th>
+                <th scope="col">
+                  Thời gian tạo
+                  {{{sortable 'createdAt' _sort}}}
+                </th>
                 <th scope="col"></th>
             </tr>
         </thead>

@@ -25,5 +25,16 @@ const Course = new Schema({
     deletedAt : true,
     overrideMethods: 'all'
   })
+  // Custom query helper
+  Course.query.sortable = function (req){
+    if(req.query.hasOwnProperty('_sort')){
+        const isvalidType = ['asc', 'desc'].includes(req.query.type)
+        return  this.sort({
+            [req.query.column] : isvalidType ? req.query.type : 'desc',
+            
+        })
+   }
+   return this;
+  }
   module.exports = mongoose.model('course', Course)
   
